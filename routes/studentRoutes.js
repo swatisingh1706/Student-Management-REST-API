@@ -42,4 +42,28 @@ router.get('/students/:id', (req,res)=>{
 })
 
 
+router.post('/students', (req,res)=>{
+
+    let {name, age, id} = req.body
+
+    if(!name || !age || !id){
+
+        return res.status(400).json({
+            message:'data not found',
+            success:false
+        })
+
+    }
+
+    students.push({name, age, id})
+
+    res.status(201).json({
+        message:'student created successfully...',
+        success:true,
+        students
+    })
+
+})
+
+
 export default router
