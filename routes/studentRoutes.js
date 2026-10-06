@@ -20,6 +20,15 @@ router.get('/students/:id', (req,res)=>{
 
     const {id} = req.params
 
+    if(isNaN(id)){
+
+        return res.status(400).json({
+            message:'invalid student id',
+            success:false
+        })
+
+    }
+
     let student = students.find((element)=>{
         return element.id == id
     })
@@ -65,11 +74,21 @@ router.post('/students', (req,res)=>{
 
 })
 
+
 router.put('/students/:id', (req,res)=>{
 
     let {name, age} = req.body
 
     let id = req.params.id
+
+    if(isNaN(id)){
+
+        return res.status(400).json({
+            message:'invalid student id',
+            success:false
+        })
+
+    }
 
     let student = students.find((element)=>{
         return element.id == id
@@ -100,9 +119,19 @@ router.put('/students/:id', (req,res)=>{
 
 })
 
+
 router.delete('/students/:id', (req,res)=>{
 
     let id = req.params.id
+
+    if(isNaN(id)){
+
+        return res.status(400).json({
+            message:'invalid student id',
+            success:false
+        })
+
+    }
 
     let student = students.find((element)=>{
         return element.id == id

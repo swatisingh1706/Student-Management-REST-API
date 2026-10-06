@@ -26,6 +26,17 @@ app.use((req,res)=>{
 })
 
 
+app.use((error,req,res,next)=>{
+
+    res.status(500).json({
+        message:'internal server error',
+        error:error.message,
+        success:false
+    })
+
+})
+
+
 app.listen(port, ()=>{
 
     console.log('server has started at port : ', port)
